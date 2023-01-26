@@ -48,7 +48,7 @@ To run the application you need will need to start the api server and client app
 
 ### Start the API Server
 
-Open a terminal window and run the following command:
+Open a terminal window and run the following command from the root of the project:
 
 ```
 yarn start:server
@@ -56,14 +56,24 @@ yarn start:server
 
 ![](https://i.imgur.com/I2Kelil.png)
 
-This will start the NestJs application and seed the in-memory sqlite database with data from the [office_quotes.json](./packages//server//src//seeds/office_quotes.json).
+This will start the NestJs application and seed the in-memory sqlite database with data from [office_quotes.json](./packages//server//src//seeds/office_quotes.json).
 
 You can access the api from your browser or with postman at the following address `http://localhost:3000/quote`. Alternatively open a terminal window and use cURL
+
+#### Random Quote
 
 ```
 curl 'http://localhost:3000/quote' \
   -H 'Accept: */*' \
   -H 'Accept-Language: en-US,en;q=0.9'
+```
+
+#### Random Quote by 'Jim' or 'Pam'
+
+```
+curl 'http://localhost:3000/quote?characters=Jim,Pam' \
+  -H 'Accept: */*' \
+  -H 'Accept-Language: en-US,en;q=0.9' \
 ```
 
 ### Start the client
@@ -78,9 +88,17 @@ yarn start:client
 
 This will run the app in the development mode. Open http://localhost:4000 to view it in the browser. To display a different quote press the **Random Quote** button.
 
-![](https://imgur.com/5lx9rVP.png)
+![](https://imgur.com/7uFZMaq.png)
 
 ## Tests
+
+### Server Unit Tests
+
+```
+cd packages/server && yarn test
+```
+
+![](https://imgur.com/c4XExhA.png)
 
 ### Server e2e Tests
 
@@ -88,20 +106,9 @@ This will run the app in the development mode. Open http://localhost:4000 to vie
 cd packages/server && yarn test:e2e
 ```
 
-```
-cd packages/server
-yarn test
-```
+![](https://imgur.com/97h1wG3.png)
 
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [Nest.js]: https://img.shields.io/badge/NestJs-20232A?style=for-the-badge&logo=nestjs&logoColor=e0234d
 [Nest-url]: https://nestjs.com/
-
-## What We Expect From You
-
-1. Create an application that creates and uses a RESTful API to retrieve and display a random quote from the given [office-quotes](https://github.com/VioletLabsInc/random-quote-generator/blob/master/src/data/office_quotes.json) dataset. This application does not need to be deployed or hosted anywhere- just something you can run locally.
-2. Add tests to your newly created application.
-3. Add any additional feature of your choice.
-4. Update the README with any information you want to include that will help us understand and run your project.
-5. Upload your completed code to your own Git repository and share it with us.
