@@ -20,6 +20,20 @@ This project is split into 3 separate packages:
 
 ## Getting Started
 
+### Prerequisites
+
+- Node v16
+
+```
+npm install npm@latest -g
+```
+
+To install the dependencies and run the scripts it is recommended to use `yarn`
+
+```
+npm install --global yarn
+```
+
 ### Installation
 
 1. Clone the repo
@@ -58,7 +72,7 @@ yarn start:server
 
 This will start the NestJs application and seed the in-memory sqlite database with data from [office_quotes.json](./packages//server//src//seeds/office_quotes.json).
 
-You can access the api from your browser or with postman at the following address `http://localhost:3000/quote`. Alternatively open a terminal window and use cURL
+You can access the api from your browser or with postman at the following address http://localhost:3000/quote. Alternatively open a terminal window and use cURL
 
 #### Random Quote
 
