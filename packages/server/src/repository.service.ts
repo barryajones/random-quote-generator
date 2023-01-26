@@ -27,7 +27,9 @@ export class RepositoryService {
 
     // Filter characters
     if (characters) {
-      query.where('character IN(:...characters)', { characters: characters });
+      query.where('LOWER(character) IN(:...characters)', {
+        characters: characters.map((c) => c.toLowerCase()),
+      });
     }
 
     const entity = await query.getOne();
@@ -49,6 +51,7 @@ export class RepositoryService {
       .createQueryBuilder()
       .select()
       .groupBy('character')
+      .orderBy('character')
       .getMany();
 
     if (!entities) {
