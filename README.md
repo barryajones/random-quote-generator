@@ -73,7 +73,7 @@ curl 'http://localhost:3000/quote' \
 ```
 curl 'http://localhost:3000/quote?characters=Jim,Pam' \
   -H 'Accept: */*' \
-  -H 'Accept-Language: en-US,en;q=0.9' \
+  -H 'Accept-Language: en-US,en;q=0.9'
 ```
 
 ### Start the client
