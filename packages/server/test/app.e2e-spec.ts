@@ -4,16 +4,16 @@ import { INestApplication } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import request from 'supertest';
 
-import { QuoteModule } from '~/quote/quote.module';
-import { QuoteEntity } from '~/quote/+entity/quote.entity';
+import { AppModule } from '~/app.module';
+import { QuoteEntity } from '~/+entity/quote.entity';
 
-describe('QuoteController (e2e)', () => {
+describe('AppController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [
-        QuoteModule,
+        AppModule,
         TypeOrmModule.forRoot({
           type: 'sqlite',
           database: ':memory:',
@@ -35,5 +35,24 @@ describe('QuoteController (e2e)', () => {
       .expect(({ body }) => {
         return body.hasOwnProperty('quote') && body.hasOwnProperty('character');
       });
+  });
+
+  it('should get a random quote for "dWiGHt": /quote (GET)', async () => {
+    const response = await request(app.getHttpServer())
+      .get('/quote?characters=dWiGHt')
+      .expect(200);
+
+    expect(response.body.quote).toBeDefined();
+    expect(response.body.character).toBeDefined();
+    expect(response.body.character).toBe('Dwight');
+  });
+
+  it('should get an alphabetically sorted list of characters: /characters (GET)', async () => {
+    const response = await request(app.getHttpServer())
+      .get('/characters')
+      .expect(200);
+
+    expect(response.body).toBeDefined();
+    expect(response.body).toStrictEqual(['Dwight', 'Jim', 'Michael', 'Pam']);
   });
 });
