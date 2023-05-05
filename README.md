@@ -92,7 +92,7 @@ curl 'http://localhost:3000/quote?characters=Jim,Pam' \
 
 ### Start the client
 
-Open annother terminal window to start the client application.
+Open another terminal window to start the client application.
 
 ```
 yarn start:client
